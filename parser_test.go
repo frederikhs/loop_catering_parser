@@ -1,0 +1,49 @@
+package loop_catering_parser
+
+import (
+	"github.com/frederikhs/goword"
+	"testing"
+)
+
+func TestParseMenus(t *testing.T) {
+	testCases := []struct {
+		Filepath string
+		Mains    map[string]string
+	}{
+		{
+			Filepath: "testfiles/Menu Uge 20.docx",
+			Mains: map[string]string{
+				"Mandag":  "Kylling i karry med grønne asparges og blomkål hertil løse ris",
+				"Tirsdag": "Krebinetter med persille kartofler og sauce tatar",
+				"Onsdag":  "Kalkun overlår med urter hertil ovn stegte gnocchi, mozzarella og tomat",
+				"Torsdag": "Pasta pesto med nye grønsager fra årstiden",
+				"Fredag":  "Tacos med langtids braiseret gris",
+			},
+		},
+		{
+			Filepath: "testfiles/Menu Uge 21.docx",
+			Mains: map[string]string{
+				"Mandag":  "",
+				"Tirsdag": "Kylling tikka masala med dampede jasmin ris",
+				"Onsdag":  "Ungarsk gullasch med luftig mos",
+				"Torsdag": "Pankora, dahl og riata",
+				"Fredag":  "Kalkun lasagne",
+			},
+		},
+	}
+
+	for _, testCase := range testCases {
+		content, err := goword.ParseText(testCase.Filepath)
+		if err != nil {
+			t.Errorf("could not parse text: %v", err)
+		}
+
+		weekMenu := ParseToWeek(content)
+
+		for day, main := range testCase.Mains {
+			if weekMenu[day].Main != main {
+				t.Errorf("expected \"%s\", got \"%s\" for file \"%s\" and day \"%s\"", main, weekMenu[day].Main, testCase.Filepath, day)
+			}
+		}
+	}
+}
