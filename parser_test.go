@@ -30,6 +30,26 @@ func TestParseMenus(t *testing.T) {
 				"Fredag":  "Kalkun lasagne",
 			},
 		},
+		{
+			Filepath: "testfiles/Menu Uge 22.docx",
+			Mains: map[string]string{
+				"Mandag":  "Paprika kylling med pasta ragout",
+				"Tirsdag": "Nakkefilet stegte med hvidløg og salvie hertil ovnstegte kartofler, champion, løg og aubergine",
+				"Onsdag":  "Kalkun vindaloo med dampede ris",
+				"Torsdag": "Wraps med marineret soya protein salt og dressing",
+				"Fredag":  "Græske kødboller med tzatziki og lun bulgur med grønt og urter",
+			},
+		},
+		{
+			Filepath: "testfiles/Menu Uge 23.docx",
+			Mains: map[string]string{
+				"Mandag":  "Kylling i karry og asparges og ris",
+				"Tirsdag": "Sprængt kalvespidsbryst med peberrods sauce og nye kartofler og ærter og dild",
+				"Onsdag":  "Marineret kalkun overlår med ovnstegte jordskokker, kartofler vendt med urtesalsa hertil tzatziki",
+				"Torsdag": "Korma med sødekartofler, blomkål og kikærter hertil fladbrød",
+				"Fredag":  "Hamburgerryg med flødekartofler",
+			},
+		},
 	}
 
 	for _, testCase := range testCases {
