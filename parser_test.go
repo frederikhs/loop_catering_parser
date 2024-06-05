@@ -53,18 +53,19 @@ func TestParseMenus(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		t.Run(testCase.Filepath, func(t *testing.T) {
+		test := testCase
+		t.Run(test.Filepath, func(t *testing.T) {
 			t.Parallel()
-			content, err := goword.ParseText(testCase.Filepath)
+			content, err := goword.ParseText(test.Filepath)
 			if err != nil {
 				t.Errorf("could not parse text: %v", err)
 			}
 
 			weekMenu := ParseToWeek(content)
 
-			for day, main := range testCase.Mains {
+			for day, main := range test.Mains {
 				if weekMenu[day].Main != main {
-					t.Errorf("expected \"%s\", got \"%s\" for file \"%s\" and day \"%s\"", main, weekMenu[day].Main, testCase.Filepath, day)
+					t.Errorf("expected \"%s\", got \"%s\" for file \"%s\" and day \"%s\"", main, weekMenu[day].Main, test.Filepath, day)
 				}
 			}
 		})

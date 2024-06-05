@@ -1,7 +1,6 @@
 package loop_catering_parser
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -71,12 +70,13 @@ func TestReplaceDietaryInformationBadges(t *testing.T) {
 		},
 	}
 
-	for i, testCase := range testCases {
-		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
+	for _, testCase := range testCases {
+		test := testCase
+		t.Run(test.Before, func(t *testing.T) {
 			t.Parallel()
-			shorted := ReplaceDietaryInformationBadges(testCase.Before)
-			if shorted != testCase.After {
-				t.Errorf("expected \"%s\", got \"%s\"", testCase.After, shorted)
+			shorted := ReplaceDietaryInformationBadges(test.Before)
+			if shorted != test.After {
+				t.Errorf("expected \"%s\", got \"%s\"", test.After, shorted)
 			}
 		})
 	}
