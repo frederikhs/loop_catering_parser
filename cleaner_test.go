@@ -32,10 +32,14 @@ func TestReplaceCharacterMistakes(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		shorted := ReplaceCharacterMistakes(testCase.Before)
-		if shorted != testCase.After {
-			t.Errorf("expected \"%s\", got \"%s\"", testCase.After, shorted)
-		}
+		test := testCase
+		t.Run(test.Before, func(t *testing.T) {
+			t.Parallel()
+			shorted := ReplaceCharacterMistakes(test.Before)
+			if shorted != test.After {
+				t.Errorf("expected \"%s\", got \"%s\"", test.After, shorted)
+			}
+		})
 	}
 }
 
