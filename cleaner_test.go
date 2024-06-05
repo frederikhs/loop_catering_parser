@@ -1,6 +1,9 @@
 package loop_catering_parser
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestReplaceCharacterMistakes(t *testing.T) {
 	testCases := []struct {
@@ -68,10 +71,13 @@ func TestReplaceDietaryInformationBadges(t *testing.T) {
 		},
 	}
 
-	for _, testCase := range testCases {
-		shorted := ReplaceDietaryInformationBadges(testCase.Before)
-		if shorted != testCase.After {
-			t.Errorf("expected \"%s\", got \"%s\"", testCase.After, shorted)
-		}
+	for i, testCase := range testCases {
+		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
+			t.Parallel()
+			shorted := ReplaceDietaryInformationBadges(testCase.Before)
+			if shorted != testCase.After {
+				t.Errorf("expected \"%s\", got \"%s\"", testCase.After, shorted)
+			}
+		})
 	}
 }
