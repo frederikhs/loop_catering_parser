@@ -50,6 +50,16 @@ func TestParseMenus(t *testing.T) {
 				"Fredag":  "Hamburgerryg med flødekartofler",
 			},
 		},
+		{
+			Filepath: "testfiles/Menu Uge 24.docx",
+			Mains: map[string]string{
+				"Mandag":  "Libanesisk kyllingeret med kold tabbouleh",
+				"Tirsdag": "Stegt gris med oyster sauce, ingefær, hvidløg, champion, broccoli og gulerod hertil dampede jasmin ris",
+				"Onsdag":  "Frikadeller med pasta pesto, spinat og tomater",
+				"Torsdag": "Chili zin carne med brune ris",
+				"Fredag":  "Fredags burger",
+			},
+		},
 	}
 
 	for _, testCase := range testCases {
