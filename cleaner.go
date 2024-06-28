@@ -26,6 +26,7 @@ func ReplaceDietaryInformationBadges(in string) string {
 func Clean(in string) string {
 	in = ReplaceCharacterMistakes(in)
 	in = ReplaceDietaryInformationBadges(in)
+	in = strings.TrimSpace(in)
 
 	return in
 }
